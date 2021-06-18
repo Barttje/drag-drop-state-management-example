@@ -39,9 +39,8 @@ class SquareWidget extends HookWidget {
             color: getColor(willAccept.value));
       },
       onWillAccept: (data) {
-        willAccept.value = checkerOnSquare == null;
-        return checkerOnSquare == null;
-        ;
+        willAccept.value = true;
+        return true;
       },
       onLeave: (data) {
         willAccept.value = false;
