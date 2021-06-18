@@ -7,11 +7,11 @@ final _currentPlayer = StateProvider((ref) => PlayerType.BLACK);
 final currentPlayer = Provider((ref) => ref.watch(_currentPlayer).state);
 
 final checkers = StateNotifierProvider<CheckerNotifier, List<Checker>>(
-    (ref) => CheckerNotifier(ref.watch));
+    (ref) => CheckerNotifier(ref.read));
 
 class CheckerNotifier extends StateNotifier<List<Checker>> {
-  var watch;
-  CheckerNotifier(this.watch)
+  Reader read;
+  CheckerNotifier(this.read)
       : super([
           Checker(1, PlayerType.BLACK, new Coordinate(0, 0)),
           Checker(2, PlayerType.WHITE, new Coordinate(0, 1))
@@ -49,8 +49,8 @@ class CheckerNotifier extends StateNotifier<List<Checker>> {
         else
           checker
     ];
-    watch(_currentPlayer.notifier).state =
-        watch(_currentPlayer.notifier).state == PlayerType.BLACK
+    read(_currentPlayer.notifier).state =
+        read(_currentPlayer.notifier).state == PlayerType.BLACK
             ? PlayerType.WHITE
             : PlayerType.BLACK;
   }

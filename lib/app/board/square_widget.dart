@@ -33,7 +33,7 @@ class SquareWidget extends HookWidget {
       builder: (BuildContext context, List<dynamic> candidateData,
           List<dynamic> rejectedData) {
         return Container(
-            child: checkerOnSquare != null
+            child: checkerOnSquare != null && !checkerOnSquare.isDragging
                 ? CheckerWidget(checkerOnSquare)
                 : Container(),
             color: getColor(willAccept.value));
@@ -41,6 +41,7 @@ class SquareWidget extends HookWidget {
       onWillAccept: (data) {
         willAccept.value = checkerOnSquare == null;
         return checkerOnSquare == null;
+        ;
       },
       onLeave: (data) {
         willAccept.value = false;
